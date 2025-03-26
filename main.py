@@ -1,5 +1,5 @@
 import streamlit as sl
-from app.pages import homepage, about, contact, chatbot
+from app.pages import homepage, about, contact, chatbot, login
 from streamlit_option_menu import option_menu
 
 def main():
@@ -22,6 +22,8 @@ def main():
         contact.show()
     elif selected_page == "Chatbot":
         chatbot.show()
+    elif selected_page == "Login":
+        login.show()
 
 
 def create_menu():
@@ -34,11 +36,12 @@ def create_menu():
     with sl.sidebar:
         selection = option_menu(
             menu_title='Menu',
-            options=["Home", "About", "Contact", "Chatbot"],
+            options=["Home", "About", "Contact", "Chatbot", "Login"],
             icons=["house", "backpack", "envelope", "chat-text"],
             menu_icon="alexa",
-            default_index=0,
+            default_index = 4,
         )
+    
     return selection
 
 if __name__ == "__main__":
