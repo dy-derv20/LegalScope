@@ -1,10 +1,14 @@
-import streamlit as sl
-from app.pages import homepage, about, contact, chatbot, login
-from streamlit_option_menu import option_menu
+import streamlit as st
+from app.pages import homepage, about, contact, chatbot
+from app.layout import create_menu
+
+
+
+
 
 def main():
     # Set page configuration
-    sl.set_page_config(
+    st.set_page_config(
         page_title="LegalScope",
         page_icon="⚖️",
         layout="wide"
@@ -12,6 +16,7 @@ def main():
 
     # Create menu and get selected page
     selected_page = create_menu()
+    
 
     # Render appropriate page based on selection
     if selected_page == "Home":
@@ -22,27 +27,16 @@ def main():
         contact.show()
     elif selected_page == "Chatbot":
         chatbot.show()
-    elif selected_page == "Login":
-        login.show()
+    
 
 
-def create_menu():
-    """
-    Create a sidebar menu using streamlit_option_menu
-    
-    Returns:
-    str: Selected page name
-    """
-    with sl.sidebar:
-        selection = option_menu(
-            menu_title='Menu',
-            options=["Home", "About", "Contact", "Chatbot", "Login"],
-            icons=["house", "backpack", "envelope", "chat-text"],
-            menu_icon="alexa",
-            default_index = 4,
-        )
-    
-    return selection
+
+
+
+
+
+
+
 
 if __name__ == "__main__":
     main()
